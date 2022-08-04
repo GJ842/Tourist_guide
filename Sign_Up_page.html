@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script language="JavaScript" src="/Jquery/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Sign UP Page</title>
+    <style>
+        * {
+            font-family: "Sofia", cursive;
+        }
+
+        h2 {
+            font-family: "Sofia", cursive;
+            font-size: 200%;
+            text-shadow: 50px;
+        }
+
+        .main {
+            border: 2px solid black;
+            margin: 0 auto;
+            left: 50%;
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .inp {
+            height: 1.5rem;
+            width: 200px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 8px auto;
+        }
+
+        .inp::placeholder {
+            text-align: center;
+        }
+
+        .submit {
+            margin: 8px auto 10px auto;
+            padding: 6px 20px;
+            border-radius: 5px;
+            background: black;
+            color: white;
+            transition: 0.5s;
+            box-shadow: 2px 2px gray;
+        }
+
+        .submit:hover {
+            color: black;
+            background: white;
+        }
+
+        .submit:active {
+            box-shadow: -2px -2px gray;
+            transition: 0.1s;
+        }
+
+        #num::-webkit-outer-spin-button,
+        #num::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .r {
+            border: 2px green solid;
+        }
+
+        .w {
+            border: 2px solid red;
+        }
+
+        h1 {
+            font-family: "Sofia", cursive;
+            font-size: 250%;
+            text-shadow: 50px;
+            color: red;
+            padding: 0;
+            margin-bottom: 0px;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main">
+        <center>
+            <h1>abc Travels</h1>
+            <h2>Sign Up</h2>
+            <form id="myform" name="myform" action="Sign_Up_page.php" method="post">
+                <input type="text" placeholder="First Name" id="fname" class="inp" name="fname">
+                <input type="text" placeholder="Last Name" id="lname" class="inp" name="lname"><br>
+                <input type="email" placeholder="Email ID" id="email" class="inp" name="email">
+                <input type="number" placeholder="Phone Number" id="num" class="inp" min="1000000000" max="9999999999"
+                    name="phoneno"><br>
+                <b style="font-size: 120%;">Gender:</b>
+                <input type="radio" id="M" name="gender" value="Male">
+                <label for="M">Male</label>
+                <input type="radio" id="F" name="gender" value="Female">
+                <label for="M">Female</label><br>
+                <input type="date" placeholder="DOB" id="dob" class="inp" name="dob"><br>
+                <input type="button" id="submit" class="submit" value="Validate">
+                <div id="submitdiv"></div>
+
+            </form>
+        </center>
+
+        <div class="result"></div>
+        <center>
+            <div class="user">
+                <p>Already a user? <a href="sign_in_page_nocom.html">Sign In</a></p>
+            </div>
+        </center>
+
+    </div>
+</body>
+<script>
+    function fnamechk() {
+        var fname = document.getElementById("fname").value;
+        var regfn = /^[a-zA-Z]+$/;
+        if (regfn.test(fname)) {
+            document.getElementById("fname").classList.add("r");
+            return true;
+        }
+        else {
+            document.getElementById("fname").classList.add("w");
+            return false;
+        }
+    }
+
+    function lnamechk() {
+        var lname = document.getElementById("lname").value;
+        var regln = /^[a-zA-Z]+$/;
+        if (regln.test(lname)) {
+            document.getElementById("lname").classList.add("r");
+            return true;
+        }
+        else {
+            document.getElementById("lname").classList.add("w");
+            return false;
+        }
+    }
+
+    function emailchk() {
+        var email = document.getElementById("email").value;
+        var regem = /^[a-z0-9\.]+@[a-z]+\.[a-z]{2,3}/;
+        if (regem.test(email)) {
+            document.getElementById("email").classList.add("r");
+            return true;
+        }
+        else {
+            document.getElementById("email").classList.add("w");
+            return false;
+        }
+    }
+
+    function numberchk() {
+        var num = document.getElementById("num").value;
+        var regnu = /^[0-9]{10}$/;
+        if (regnu.test(num)) {
+            document.getElementById("num").classList.add("r");
+            return true;
+        }
+        else {
+            document.getElementById("num").classList.add("w");
+            return false;
+        }
+    }
+
+    function datecheck() {
+        var cdate = new Date();
+        var cyear = cdate.getFullYear();
+        console.log(cyear);
+        var idate = new Date($("#dob").val());
+        var iyear = idate.getFullYear();
+        console.log(iyear);
+        if ((cyear - iyear) >= 18 && (cyear - iyear) <= 128) {
+            document.getElementById("dob").classList.add("r");
+            return true;
+        }
+        else {
+            document.getElementById("dob").classList.add("w");
+            return false;
+        }
+    }
+
+
+
+    var submit = document.getElementById("submit");
+    submit.addEventListener("click", function () {
+        document.getElementById("fname").classList.remove("r");
+        document.getElementById("fname").classList.remove("w");
+        document.getElementById("lname").classList.remove("r");
+        document.getElementById("lname").classList.remove("w");
+        document.getElementById("email").classList.remove("r");
+        document.getElementById("email").classList.remove("w");
+        document.getElementById("num").classList.remove("r");
+        document.getElementById("num").classList.remove("w");
+        document.getElementById("dob").classList.remove("r");
+        document.getElementById("dob").classList.remove("w");
+        fnamechk();
+        lnamechk();
+        emailchk();
+        numberchk();
+        datecheck();
+        if (fnamechk() && lnamechk() && emailchk() && numberchk() && datecheck()) {
+            var template = `
+            <input type="submit" value="submit" class="submit">
+            `;
+            document.getElementById("submitdiv").innerHTML = template;
+        }
+        else {
+            alert("Check Values")
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Page</title>
+    <script language="JavaScript" src="/Jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="sign_in.css">
+</head>
+
+<body>
+    <div class="main">
+        <center>
+            <h1>abc Travels</h1>
+            <h2>Sign In Page</h2>
+            <form action="sign_in_pg_test.php" method="post">
+                <input type="email" id="email" placeholder="Email ID" class="inp" name="email"><br>
+                <input type="number" placeholder="Phone Number" id="num" class="inp" min="1000000000" max="9999999999"
+                    name="phoneno"><br><br>
+                <input type="submit" id="login" value="Sign In" class="submit" name="login">
+
+            </form>
+            <div class="result">
+            </div>
+        </center>
+        <center>
+            <div class="user">
+                <p>Don't have an Account? <a href="Sign_Up_page.html">Sign Up</a></p>
+            </div>
+        </center>
+    </div>
+    
+
+    <script>
+        function numberchk() {
+            var num = document.getElementById("num").value;
+            var regnu = /^[0-9]{10}$/;
+            if (regnu.test(num)) {
+                document.getElementById("num").classList.add("r");
+                return true;
+            } else {
+                document.getElementById("num").classList.add("w");
+                return false;
+            }
+        }
+
+        function emailchk() {
+            var email = document.getElementById("email").value;
+            var regem = /^[a-z0-9\.]+@[a-z]+\.[a-z]{2,3}/;
+            if (regem.test(email)) {
+                document.getElementById("email").classList.add("r");
+                return true;
+            } else {
+                document.getElementById("email").classList.add("w");
+                return false;
+            }
+        }
+
+        var login = document.getElementById("login");
+        login.addEventListener("click", function (e) {
+            document.getElementById("email").classList.remove("r");
+            document.getElementById("email").classList.remove("w");
+            document.getElementById("num").classList.remove("r");
+            document.getElementById("num").classList.remove("w");
+            emailchk();
+            numberchk();
+        })
+    </script>
+
+</body>
+
+
+</html>
